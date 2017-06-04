@@ -22,7 +22,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
+
+<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>
+
+<tilesx:useAttribute name="current"/>
 	
 	<div class="container">
 	  <!-- Static navbar -->
@@ -39,15 +44,17 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href='<spring:url value="/" />'>Home</a></li>
-              <li><a href="#">About</a></li>
+              <li class="${ current == 'index' ? 'active' : ''}"><a href='<spring:url value="/" />'>Home</a></li>
+              <li class="${ current == 'users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Users</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>		
+	
+	  <tiles:insertAttribute name="body" />
+	  
 	</div>
-	<tiles:insertAttribute name="body" />
 	
 	<br>
 	<br>
